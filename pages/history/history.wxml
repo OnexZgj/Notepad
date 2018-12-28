@@ -1,0 +1,22 @@
+<view class="page">
+
+ <block wx:for="{{pagerList}}" wx:for-item="item">
+  <view class='liststyle'>
+
+    <view class='title' id='{{item.id}}' bindtap='detail'>{{item.dydj}}kV</view>
+
+    <view class='title' id='{{item.id}}' bindtap='detail'>位置:{{item.location}}</view>
+
+    <view class='title' id='{{item.id}}' bindtap='detail'>描述:{{item.des}}</view>
+
+    <view class='title' id='{{item.id}}' bindtap='detail'>原始记录:{{item.record}}</view>
+    <view class='title' id='{{item.id}}' bindtap='detail'>保存时间:{{item.time}}</view>
+
+    <view class='title'>
+      <image class='listtopimage' src='../../assets/images/delete.png'></image>
+      <image class='listtopimage' src='../../assets/images/update.png'></image>
+
+    </view>
+  </view>
+ </block>
+</view>

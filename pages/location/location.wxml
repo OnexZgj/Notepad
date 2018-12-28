@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view >
+    <text>Location  {{latitude}}  +  {{longitude}}</text>
+
+
+    <button  bindtap="getLocation" margin-top="10px">  get Location() </button>
+
+  </view>
+</view>

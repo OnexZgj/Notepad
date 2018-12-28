@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="usermotto">
+    <text> 第二个page OnexZgj!</text>
+
+
+    <button  bindtap="getPic"> take pic </button>
+
+
+    <button type='primary' bindtap='getFileInfo'> 文件系统 </button>
+
+    <image bindtap='showImage' src='{{imgUrl}}' mode="aspectFill">  </image>
+
+  </view>
+</view>

@@ -1,0 +1,28 @@
+@import "../common/lib/weui.wxss";
+
+textarea {
+    width: 700rpx;
+    padding: 25rpx 0;
+}
+.textarea-wrp {
+    padding: 0 25rpx;
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+
+.page-section-ctn {
+  padding: 20rpx;
+  text-align: left;
+}
+
+.image {
+  margin-top: 30rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.text-history{
+  text-align: right;
+  margin-top: 200rpx;
+  margin-right: 20rpx;
+}

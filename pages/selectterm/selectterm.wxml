@@ -1,0 +1,60 @@
+<view class="container">
+
+  <view class="page-body">
+    <view class="page-section">
+
+
+
+
+
+      <view class="weui-cells ">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-input">线路电压 </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker  value="{{dydj}}" bindchange="bindDydjChange" range="{{dydj}}">
+              <view class="weui-input"> : {{dydj[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+
+
+
+      <view class="weui-cells ">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" placeholder="线路名称" />
+        </view>
+      </view>
+
+
+
+
+      <view class="weui-cells ">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" placeholder="杆塔号码" />
+        </view>
+      </view>
+
+
+      <view class="weui-cells ">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-input">巡视日期 </view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="date" value="{{date}}" start="2018-09-01"  bindchange="bindDateChange">
+              <view class="weui-input"> : {{date}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+
+      <button type="primary" class='button-search' bindtap='search'>搜索</button>
+
+    </view>
+  </view>
+</view>
