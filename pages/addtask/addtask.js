@@ -1,6 +1,6 @@
 const sourceType = [['camera'], ['album'], ['camera', 'album']]
 const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
-
+var inputContent=''
 Page({
 
   onShareAppMessage() {
@@ -14,6 +14,13 @@ Page({
   data: {
     pagernumber: 0,
 
+
+    task:{
+      name:'',
+      imagexx:[]
+    },
+
+
     imageList: [],
     sourceTypeIndex: 2,
     sourceType: ['拍照', '相册', '拍照或相册'],
@@ -21,11 +28,9 @@ Page({
     data:'',
     sizeTypeIndex: 0,
     sizeType: ['压缩', '原图', '压缩或原图'],
-value:'567',
+    value:'',
     countIndex: 8,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
   },
 
   toselectterm: function (e) {
@@ -40,19 +45,35 @@ value:'567',
   },
 
 
-  save: function(e){
+  savez: function (e) {
     const that = this;
-    console.log(this);
     console.log(this.data.imageList);
-    wx.setStorageSync("01",  this.data.imageList );
+    wx.setStorageSync("01", this.data.imageList);
 
     var value = wx.getStorageSync("01");
-    console.log("value"+value);
+    console.log("value" + value);
 
   },
 
 
-  
+  onInputChange:function(e){
+    inputContent = e.detail.value;
+    console.log("onInput:" + inputContent);
+    // this.data.task.name = value;
+  },
+
+
+  save: function(e){
+    const that = this;
+    this.data.task.name = inputContent;
+    this.data.task.imagexx=this.data.imageList;
+    wx.setStorageSync("01",  this.data.task );
+
+    var value = wx.getStorageSync("01");
+    console.log("value"+value.name);
+    console.log("imagexx"+value.imagexx);
+
+  },
 
   
   savex: function () {
@@ -74,7 +95,8 @@ value:'567',
     })
   },
 
-  chooseImage() {
+
+  chooseImagez() {
     const that = this
     wx.chooseImage({
       sourceType: sourceType[this.data.sourceTypeIndex],
@@ -84,6 +106,23 @@ value:'567',
         console.log(res)
         that.setData({
           imageList: res.tempFilePaths
+        })
+      }
+    })
+  },
+
+
+
+  chooseImage() {
+    const that = this
+    wx.chooseImage({
+      sourceType: sourceType[this.data.sourceTypeIndex],
+      sizeType: sizeType[this.data.sizeTypeIndex],
+      count: this.data.count[this.data.countIndex],
+      success(res) {
+        console.log(res)
+        that.setData({
+          imageList : res.tempFilePaths
         })
       }
     })
@@ -99,18 +138,23 @@ value:'567',
   
   onLoad: function (options) {
     var that = this
+
     wx.getStorage({
       key: '01',
       success: function (res) {
-        that.setData({ 
-          value: res.data,
-          imageList:res.data
-           })
-        
+
+        console.log("res onLoad " + res.data.name);
+
+        that.setData({
+          // value: res.data,
+          // imageList: res.data
+          value:res.data.name,
+          imageList:res.data.imagexx
+        })
       },
     })
-  
   }
+
 
 
 })
