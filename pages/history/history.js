@@ -2,8 +2,20 @@ Page({
 
   data: {
 
-    ms:'',
-    imageList:[],
+    tasks:[],
+
+    task: {
+      taskId: '',
+      time: '',
+      record: '',
+      des: '',
+      location: '',
+      dydj: '',
+      images: []
+    },
+
+
+
     pagerList: [{
         id: "1",
         recode: "第一天",
@@ -63,9 +75,9 @@ Page({
       success: function (res) {
         console.log("history onLoad " + res.data.name);
         that.setData({
-          ms: res.data.name,
-         
-          imageList: res.data.imagexx
+          tasks:res.data
+          // ms: res.data.task.des,
+          // imageList: res.data.task.images
         })
       },
     })

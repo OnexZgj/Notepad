@@ -2,9 +2,7 @@
 
   <view class="container">
 
-  <view class='title' >{{ms}}</view>
-
-    <block wx:for="{{pagerList}}" wx:for-item="item">
+    <block wx:for="{{tasks}}" wx:for-item="item">
       <view class='liststyle'>
 
         <view class='title' id='{{item.id}}' bindtap='detail'>{{item.dydj}}kV</view>

@@ -1,6 +1,14 @@
-const sourceType = [['camera'], ['album'], ['camera', 'album']]
-const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
-var inputContent=''
+const sourceType = [
+  ['camera'],
+  ['album'],
+  ['camera', 'album']
+]
+const sizeType = [
+  ['compressed'],
+  ['original'],
+  ['compressed', 'original']
+]
+var inputContent = ''
 Page({
 
   onShareAppMessage() {
@@ -14,10 +22,16 @@ Page({
   data: {
     pagernumber: 0,
 
-
-    task:{
-      name:'',
-      imagexx:[]
+    tasks:[],
+    
+    task: {
+      taskId: '',
+      time: '',
+      record: '',
+      des: '123',
+      location: '',
+      dydj: '',
+      images: []
     },
 
 
@@ -25,27 +39,23 @@ Page({
     sourceTypeIndex: 2,
     sourceType: ['拍照', '相册', '拍照或相册'],
 
-    data:'',
+    data: '',
     sizeTypeIndex: 0,
     sizeType: ['压缩', '原图', '压缩或原图'],
-    value:'',
+    value: '',
     countIndex: 8,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
 
-  toselectterm: function (e) {
+  toselectterm: function(e) {
     wx.navigateTo({
       url: '../selectterm/selectterm'
     })
   },
 
 
-  dataChange(e) {
-    this.data.data = e.detail.value;
-  },
 
-
-  savez: function (e) {
+  savez: function(e) {
     const that = this;
     console.log(this.data.imageList);
     wx.setStorageSync("01", this.data.imageList);
@@ -56,39 +66,41 @@ Page({
   },
 
 
-  onInputChange:function(e){
+  onInputChange: function(e) {
     inputContent = e.detail.value;
     console.log("onInput:" + inputContent);
-    // this.data.task.name = value;
   },
 
 
-  save: function(e){
+  save: function(e) {
     const that = this;
-    this.data.task.name = inputContent;
-    this.data.task.imagexx=this.data.imageList;
-    wx.setStorageSync("01",  this.data.task );
+    // this.data.task.des = inputContent;
+    this.data.task.images = this.data.imageList;
+
+    this.data.tasks.push(this.data.task);
+    wx.setStorageSync("01", this.data.tasks);
+    // wx.setStorageSync("01", this.data.task);
+
+
 
     var value = wx.getStorageSync("01");
-    console.log("value"+value.name);
-    console.log("imagexx"+value.imagexx);
+    console.log("save value" + value);
 
   },
 
-  
-  savex: function () {
+
+  savex: function() {
     wx.showNavigationBarLoading()
     wx.request({
       url: 'https://www.mtjsoft.cn/wanandroid/api/banner',
       method: 'GET',
-      success: function (res) {
+      success: function(res) {
         // 隐藏导航栏加载框
-       
         wx.hideNavigationBarLoading();
-       
-       console.log(res.data);
+
+        console.log(res.data);
       },
-      fail: function () {
+      fail: function() {
         // 隐藏导航栏加载框
         wx.hideNavigationBarLoading();
       }
@@ -122,7 +134,7 @@ Page({
       success(res) {
         console.log(res)
         that.setData({
-          imageList : res.tempFilePaths
+          imageList: res.tempFilePaths
         })
       }
     })
@@ -135,21 +147,20 @@ Page({
       urls: this.data.imageList
     })
   },
-  
-  onLoad: function (options) {
+
+  onLoad: function(options) {
     var that = this
 
     wx.getStorage({
       key: '01',
-      success: function (res) {
-
-        console.log("res onLoad " + res.data.name);
+      success: function(res) {
 
         that.setData({
-          // value: res.data,
-          // imageList: res.data
-          value:res.data.name,
-          imageList:res.data.imagexx
+
+          tasks:res.data
+          // value: res.data.task,
+          // imageList: res.data.images
+
         })
       },
     })
