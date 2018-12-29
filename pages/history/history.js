@@ -8,6 +8,8 @@ Page({
       taskId: '',
       time: '',
       record: '',
+      xlmc: '',
+      gh: '',
       des: '',
       location: '',
       dydj: '',
@@ -66,6 +68,13 @@ Page({
   },
 
 
+  previewImage(e) {
+    const current = e.target.dataset.src
+    wx.previewImage({
+      current,
+      urls: this.data.imageList
+    })
+  },
 
   onLoad: function (options) {
     var that = this

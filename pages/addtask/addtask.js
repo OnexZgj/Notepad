@@ -8,6 +8,10 @@ const sizeType = [
   ['original'],
   ['compressed', 'original']
 ]
+
+/**
+ * 文本框的输入字符串
+ */
 var inputContent = ''
 Page({
 
@@ -22,13 +26,15 @@ Page({
   data: {
     pagernumber: 0,
 
-    tasks:[],
-    
+    tasks: [],
+
     task: {
       taskId: '',
       time: '',
       record: '',
-      des: '123',
+      xlmc:'',
+      gh:'',
+      des: '',
       location: '',
       dydj: '',
       images: []
@@ -68,21 +74,41 @@ Page({
 
   onInputChange: function(e) {
     inputContent = e.detail.value;
-    console.log("onInput:" + inputContent);
+
+
+    console.log("onInputChange:" + inputContent);
   },
 
 
   save: function(e) {
     const that = this;
-    // this.data.task.des = inputContent;
+    console.log("save : " + inputContent);
     this.data.task.images = this.data.imageList;
+    this.content = '220千伏花苗线12号杆A相小号侧前上方导管破裂';
 
+    let dy = this.content.slice(0, this.content.indexOf('千伏'));
+    let xlmc = this.content.slice(this.content.indexOf('千伏') + 2, this.content.indexOf('线') + 1);
+    let gh = this.content.slice(this.content.indexOf('线') + 1, this.content.indexOf('杆') + 1);
+
+    console.log(gh);
+    console.log(dy);
+    console.log(xlmc);
+    //TODO字符串的切割 taskId
+    this.data.task.des = inputContent.slice(0, this.content.indexOf('千伏'));
+    this.data.task.time = inputContent;
+    this.data.task.xlmc = inputContent.slice(this.content.indexOf('千伏') + 2, this.content.indexOf('线') + 1);
+    this.data.task.location = inputContent;
+    this.data.task.gh = inputContent.slice(this.content.indexOf('线') + 1, this.content.indexOf('杆') + 1);
+    this.data.task.dydj = inputContent.slice(0, this.content.indexOf('千伏'));
+
+
+    console.log("save after " + this.data.task.des)
     this.data.tasks.push(this.data.task);
     wx.setStorageSync("01", this.data.tasks);
-    // wx.setStorageSync("01", this.data.task);
 
 
 
+    //测试保存是否成功
     var value = wx.getStorageSync("01");
     console.log("save value" + value);
 
@@ -148,24 +174,15 @@ Page({
     })
   },
 
-  onLoad: function(options) {
+  onShow: function(options) {
     var that = this
-
     wx.getStorage({
       key: '01',
       success: function(res) {
-
         that.setData({
-
-          tasks:res.data
-          // value: res.data.task,
-          // imageList: res.data.images
-
+          tasks: res.data
         })
       },
     })
   }
-
-
-
 })

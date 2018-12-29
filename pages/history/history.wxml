@@ -9,11 +9,19 @@
 
         <view class='title' id='{{item.id}}' bindtap='detail'>位置:{{item.location}}</view>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>描述:{{item.des}}</view>
+        <view class='title' id='{{item.id}}' bindtap='detail'>描述:{{item.gh}}</view>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>原始记录:{{item.record}}</view>
+        <view class='title' id='{{item.id}}' bindtap='detail'>原始记录:{{item.xlmc}}</view>
         <view class='title' id='{{item.id}}' bindtap='detail'>保存时间:{{item.time}}</view>
 
+        <view class="weui-uploader__bd">
+          <block wx:for="{{item.images}}" wx:for-item="image">
+            <view class="weui-uploader__file">
+              <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+            </view>
+          </block>
+
+        </view>
         <view class='title'>
           <image class='listtopimage' src='../../assets/images/delete.png'></image>
           <image class='listtopimage' src='../../assets/images/update.png'></image>
