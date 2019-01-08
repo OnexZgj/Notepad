@@ -2,17 +2,17 @@
 
   <view class="container">
 
-    <block wx:for="{{tasks}}" wx:for-item="item">
+    <block wx:for="{{tasks}}" wx:for-item="item" >
       <view class='liststyle'>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>{{item.dydj}}kV</view>
+        <view class='title' id='{{item.dydj}}' >{{item.dydj}}</view>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>位置:{{item.location}}</view>
+        <view class='title' id='{{item.location}}' >位置:{{item.location}}</view>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>描述:{{item.gh}}</view>
+        <view class='title' id='{{item.gh}}' >描述:{{item.gh}}</view>
 
-        <view class='title' id='{{item.id}}' bindtap='detail'>原始记录:{{item.xlmc}}</view>
-        <view class='title' id='{{item.id}}' bindtap='detail'>保存时间:{{item.time}}</view>
+        <view class='title' id='{{item.xlmc}}' >原始记录:{{item.xlmc}}</view>
+        <view class='title' id='{{item.time}}' >保存时间:{{item.time}}</view>
 
         <view class="weui-uploader__bd">
           <block wx:for="{{item.images}}" wx:for-item="image">
@@ -20,15 +20,13 @@
               <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
             </view>
           </block>
-
         </view>
         <view class='title'>
-          <image class='listtopimage' src='../../assets/images/delete.png'></image>
-          <image class='listtopimage' src='../../assets/images/update.png'></image>
+          <image id='{{index}}' class='listtopimage' src='../../assets/images/delete.png' bindtap='delete' ></image>
+          <image class='listtopimage' src='../../assets/images/update.png'  id='{{index}}'bindtap='update'></image>
 
         </view>
       </view>
-
     </block>
   </view>
 </view>

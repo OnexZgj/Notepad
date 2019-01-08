@@ -3,15 +3,17 @@
     "pages/index/index",
     "pages/selectterm/selectterm",
     "pages/history/history",
+    "pages/updatetask/updatetask",
     "pages/addtask/addtask",
     "pages/task/task",
     "pages/pic/pic",
+ 
     "pages/location/location"
  ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#666666",
-    "navigationBarTitleText": "OnexZgj",
+    "navigationBarTitleText": "输电记事本",
     "navigationBarTextStyle":"white"
   }
 }

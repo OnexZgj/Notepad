@@ -25,15 +25,17 @@
         </view>
       </view>
 
-      <view class="textarea-wrp" >
-        <textarea  bindblur='onInputChange' style="height: 6em "  value='{{value}}'  />
-      </view>
 
+      <form bindsubmit='formSubmit'  >
+      <view class="textarea-wrp" >
+        <textarea  bindblur='onInputChange' style="height: 6em " name="value"  value='{{value}}'  />
+      </view>
+     
       <view class="page-section-title" style="margin: 10px">格式:电压+线路名称+杆号+相别及大小号+具体位置+缺陷描述</view>
 
-      <button type="primary" style='margin: 5rpx' bindtap='save'>保存</button>
+      <button type="primary" style='margin: 5rpx'formType="submit"  >保存</button>
 
-
+ </form>
       <view class="text-history" bindtap="toselectterm">历史</view>
 
 

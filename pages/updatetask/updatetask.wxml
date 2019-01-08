@@ -1,8 +1,8 @@
-<view class="container">
+<view class="page">
 
-  <view class="page-body">
-    <view class="page-section">
+  <view class="container">
 
+    
       <form bindsubmit='formSubmit'  >
         <view class="weui-cells ">
           <view class="weui-cell weui-cell_input">
@@ -34,23 +34,22 @@
         </view>
 
 
-        <view class="weui-cells ">
+  <view class="weui-cells ">
           <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-input">巡视日期 </view>
-            </view>
-            <view class="weui-cell__bd">
-              <picker name="time" mode="date" value="{{date}}" start="2000-09-01" bindchange="bindDateChange">
-                <view class="weui-input"  > : {{date}}</view>
-              </picker>
-            </view>
+            <input class="weui-input" name="location" placeholder="缺陷位置" />
           </view>
         </view>
 
 
-        <button type="primary" class='button-search' formType="submit" >搜索</button>
+          <view class="weui-cells ">
+          <view class="weui-cell weui-cell_input">
+            <input class="weui-input" name="des" placeholder="缺陷描述" />
+          </view>
+        </view>
+
+
+        <button type="primary" class='button-search' formType="submit" >修改</button>
 
       </form>
-    </view>
   </view>
 </view>

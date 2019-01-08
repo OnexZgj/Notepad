@@ -18,9 +18,41 @@ Page({
   },
 
 
-  search: function(e) {
+  formSubmit(e) {
+    var dydj ="";
+    var gh="";
+    var time="";
+    if (e.detail.value.dydj   instanceof Array ){
+      dydj=""
+    }else{
+      dydj = this.data.dydj[e.detail.value.dydj]
+    }
+
+    if (e.detail.value.time!=null){
+      time = e.detail.value.time
+    }
+    
+    var xlmc = e.detail.value.xlmc
+    if (e.detail.value.gh!=null){
+      gh = e.detail.value.gh
+    }
+
+    console.log("dydj:" + dydj + " gh :" + gh + time + xlmc);
     wx.navigateTo({
-      url: '../history/history'
+      url: '../history/history?dydj=' + dydj + "&time=" + time + "&xlmc=" + xlmc + "&gh=" + gh
+    })
+  },
+
+
+  search: function(e) {
+
+    var dydj=this.data.dydj[e.detail.value.dydj]
+    var time=''
+    var xlmc=''
+    var gh=''
+
+    wx.navigateTo({
+      url: '../history/history?dydj='+dydj+"&time="+time+"&xlmc="+xlmc+"&gh="+gh
     })
   },
 

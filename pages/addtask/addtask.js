@@ -9,6 +9,9 @@ const sizeType = [
   ['compressed', 'original']
 ]
 
+
+var util = require('../../utils/util.js');
+
 /**
  * 文本框的输入字符串
  */
@@ -59,6 +62,12 @@ Page({
     })
   },
 
+  //   toselectterm: function(e) {
+  //   wx.navigateTo({
+  //     url: '../updatetask/updatetask'
+  //   })
+  // },
+
 
 
   savez: function(e) {
@@ -80,9 +89,17 @@ Page({
   },
 
 
-  save: function(e) {
+  formSubmit: function(e) {
+
     const that = this;
+    inputContent=e.detail.value.value
     console.log("save : " + inputContent);
+
+    //获取系统时间
+    var time = util.formatTime(new Date());
+    console.log(time);
+
+
     this.data.task.images = this.data.imageList;
     this.content = '220千伏花苗线12号杆A相小号侧前上方导管破裂';
 
@@ -93,20 +110,19 @@ Page({
     console.log(gh);
     console.log(dy);
     console.log(xlmc);
+
     //TODO字符串的切割 taskId
-    this.data.task.des = inputContent.slice(0, this.content.indexOf('千伏'));
-    this.data.task.time = inputContent;
-    this.data.task.xlmc = inputContent.slice(this.content.indexOf('千伏') + 2, this.content.indexOf('线') + 1);
+    this.data.task.des = inputContent.slice(0, inputContent.indexOf('千伏'));
+    this.data.task.time = time;
+    this.data.task.xlmc = inputContent.slice(inputContent.indexOf('千伏') + 2, inputContent.indexOf('线') + 1);
     this.data.task.location = inputContent;
-    this.data.task.gh = inputContent.slice(this.content.indexOf('线') + 1, this.content.indexOf('杆') + 1);
-    this.data.task.dydj = inputContent.slice(0, this.content.indexOf('千伏'));
+    this.data.task.gh = inputContent.slice(inputContent.indexOf('线') + 1, inputContent.indexOf('杆') + 1);
+    this.data.task.dydj = inputContent.slice(0, inputContent.indexOf('千伏')) + 'kV';
 
 
-    console.log("save after " + this.data.task.des)
+
     this.data.tasks.push(this.data.task);
     wx.setStorageSync("01", this.data.tasks);
-
-
 
     //测试保存是否成功
     var value = wx.getStorageSync("01");
@@ -176,6 +192,7 @@ Page({
 
   onShow: function(options) {
     var that = this
+
     wx.getStorage({
       key: '01',
       success: function(res) {
