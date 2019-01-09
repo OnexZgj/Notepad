@@ -65,17 +65,6 @@ Page({
       hasUserInfo: true
     })
   },
-  gotoTask: function(e){
-    wx.navigateTo({
-      url: '../task/task'
-    })
-  },
-
-  gotoLocation: function(e){
-    wx.navigateTo({
-      url: '../location/location'
-    })
-  },
 
 
     firstPage: function (e) {

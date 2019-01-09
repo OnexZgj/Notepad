@@ -7,7 +7,7 @@
         <view class="weui-cells ">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
-              <view class="weui-input">线路电压 </view>
+              <view class="weui-input">选择列表 </view>
             </view>
             <view class="weui-cell__bd">
               <picker name="dydj" value="{{dydj}}" bindchange="bindDydjChange" range="{{dydj}}">
@@ -21,17 +21,12 @@
 
         <view class="weui-cells ">
           <view class="weui-cell weui-cell_input">
-            <input class="weui-input" name="xlmc" placeholder="线路名称" />
+            <input class="weui-input" name="des" placeholder="关键字" />
           </view>
         </view>
 
 
 
-        <view class="weui-cells ">
-          <view class="weui-cell weui-cell_input">
-            <input class="weui-input" name="gh" placeholder="杆塔号码" />
-          </view>
-        </view>
 
 
         <view class="weui-cells ">

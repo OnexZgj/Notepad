@@ -13,7 +13,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#666666",
-    "navigationBarTitleText": "输电记事本",
+    "navigationBarTitleText": "OneX记事本",
     "navigationBarTextStyle":"white"
   }
 }

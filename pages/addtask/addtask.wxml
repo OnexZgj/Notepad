@@ -7,7 +7,7 @@
       <view class="weui-cell__bd">
         <view class="weui-uploader">
           <view class="weui-uploader__hd">
-            <view class="weui-uploader__title">选择缺陷图片：</view>
+            <view class="weui-uploader__title">请选择保存图片：</view>
             <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
           </view>
           <view class="weui-uploader__bd">
@@ -26,17 +26,17 @@
       </view>
 
 
-      <form bindsubmit='formSubmit'  >
-      <view class="textarea-wrp" >
-        <textarea  bindblur='onInputChange' style="height: 6em " name="value"  value='{{value}}'  />
-      </view>
-     
-      <view class="page-section-title" style="margin: 10px">格式:电压+线路名称+杆号+相别及大小号+具体位置+缺陷描述</view>
+      <form bindsubmit='formSubmit'>
+        <view class="textarea-wrp">
+          <textarea bindblur='onInputChange' style="height: 6em " name="value" value='{{value}}' />
+        </view>
 
-      <button type="primary" style='margin: 5rpx'formType="submit"  >保存</button>
+        <view class="page-section-title" style="margin: 10px">want to note something!关键字“/”分开</view>
 
- </form>
-      <view class="text-history" bindtap="toselectterm">历史</view>
+        <button type="primary" style='margin: 5rpx' formType="submit">保存</button>
+
+      </form>
+      <view class="text-history" bindtap="toselectterm">往事</view>
 
 
     </view>

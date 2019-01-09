@@ -34,12 +34,8 @@ Page({
     task: {
       taskId: '',
       time: '',
-      record: '',
-      xlmc:'',
-      gh:'',
-      des: '',
-      location: '',
-      dydj: '',
+      record: '',    
+      des: '',  
       images: []
     },
 
@@ -101,25 +97,12 @@ Page({
 
 
     this.data.task.images = this.data.imageList;
-    this.content = '220千伏花苗线12号杆A相小号侧前上方导管破裂';
-
-    let dy = this.content.slice(0, this.content.indexOf('千伏'));
-    let xlmc = this.content.slice(this.content.indexOf('千伏') + 2, this.content.indexOf('线') + 1);
-    let gh = this.content.slice(this.content.indexOf('线') + 1, this.content.indexOf('杆') + 1);
-
-    console.log(gh);
-    console.log(dy);
-    console.log(xlmc);
+  
 
     //TODO字符串的切割 taskId
-    this.data.task.des = inputContent.slice(0, inputContent.indexOf('千伏'));
-    this.data.task.time = time;
-    this.data.task.xlmc = inputContent.slice(inputContent.indexOf('千伏') + 2, inputContent.indexOf('线') + 1);
-    this.data.task.location = inputContent;
-    this.data.task.gh = inputContent.slice(inputContent.indexOf('线') + 1, inputContent.indexOf('杆') + 1);
-    this.data.task.dydj = inputContent.slice(0, inputContent.indexOf('千伏')) + 'kV';
-
-
+    this.data.task.des = inputContent.slice(0, inputContent.indexOf('/'));
+    this.data.task.time = time.slice(0,10);
+    this.data.task.record = inputContent;
 
     this.data.tasks.push(this.data.task);
     wx.setStorageSync("01", this.data.tasks);

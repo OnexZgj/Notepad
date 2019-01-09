@@ -4,9 +4,7 @@ Page({
 
   data: {
 
-    dydj: '',
-    xlmc: '',
-    gh: '',
+    des: '',
     time: '',
     /**
      * 任务列表集合
@@ -15,19 +13,13 @@ Page({
 
     //检索使用的临时变量
     dydjList: [],
-    xlmcList: [],
     timeList: [],
-    ghList: [],
 
     task: {
       taskId: '',
       time: '',
       record: '',
-      xlmc: '',
-      gh: '',
       des: '',
-      location: '',
-      dydj: '',
       images: []
     },
 
@@ -57,9 +49,16 @@ Page({
   delete: function (event) {
     var position = event.currentTarget.id
     console.log("delete: " +position)
-    this.data.tasks.splice(position,1)
+    var tempTask=this.data.tasks.splice(position,1)
+    console.log("delete: " + tempTask.length)
 
-    console.log("delete: " + this.data.tasks.length)
+    this.setData({
+      tasks: tempTask
+
+    })
+
+    wx.setStorageSync("01", tempTask );
+
 
     // this.setData({
     //   tasks: tempTask
@@ -70,7 +69,7 @@ Page({
       data: link,
       success: function(res) {
         wx.showToast({
-          title: '已删除成功',
+          title: '删除待开发',
           icon: 'success'
         })
       }
@@ -90,31 +89,6 @@ Page({
         })
       }
     })
-
-
-    // url: '../history/history
-    // wx.navigateTo({
-    //   url: '../updatetask/updatetask?dydj=' + dydj + "&time=" + time + "&xlmc=" + xlmc + "&gh=" + gh+"&position="+position 
-    // })
-
-
-
-    // that = this; //不要漏了这句，很重要
-    // // var link = event.currentTarget.id
-    // var link = 'nice'
-    // console.log("detail" +link)
-    /**wx.navigateTo({
-      url: '../webview/webview?link=' + link,
-    })*/
-    // wx.setClipboardData({
-    //   data: link,
-    //   success: function (res) {
-    //     wx.showToast({
-    //       title: '已复制链接',
-    //       icon: 'success'
-    //     })
-    //   }
-    // })
   },
 
 
@@ -127,9 +101,7 @@ Page({
 
     console.log("重新执行了方法")
     var that = this
-    var dydj = options.dydj;
-    var xlmc = options.xlmc;
-    var gh = options.gh;
+    var des = options.des;
     var time = options.time;
 
 
@@ -140,9 +112,16 @@ Page({
 
         var list = res.data;
 
-        if (dydj != "") {
+        // that.setData({
+        //   tasks: res.data
+
+        // })
+
+
+
+        if (des != "") {
           for (var i in list) {
-            if (dydj == list[i].dydj) {
+            if (des == list[i].des) {
 
               that.data.dydjList.push(list[i]);
             }
@@ -151,48 +130,34 @@ Page({
           that.data.dydjList = list;
         }
 
-        if (xlmc != "") {
-          for (var i in that.data.dydjList) {
-            if (xlmc == that.data.dydjList[i].xlmc) {
-              that.data.xlmcList.push(that.data.dydjList[i]);
-            }
-          }
-        } else {
-          that.data.xlmcList = that.data.dydjList;
-        }
-
-        if (gh != "") {
-          for (var i in that.data.xlmcList) {
-            if (gh == that.data.xlmcList[i].gh) {
-              that.data.ghList.push(that.data.xlmcList[i]);
-            }
-          }
-        } else {
-          that.data.ghList = that.data.xlmcList;
-        }
 
 
         // timeList = [];
         if (time != "") {
-          for (var i in that.data.ghList) {
-            if (time == that.data.ghList[i].time) {
-              that.data.timeList.push(that.data.ghList[i]);
+          var year=time.slice(0,4)
+          var month=time.slice(5,7)
+          var day=time.slice(8,10)
+          time=year+"/"+month+"/"+day
+          console.log(year+'=='+month+"==="+day)
+          for (var i in that.data.dydjList) {
+            if (time == that.data.dydjList[i].time) {
+              that.data.timeList.push(that.data.dydjList[i]);
             }
           }
         } else {
-          that.data.timeList = that.data.ghList;
+          that.data.timeList = that.data.dydjList;
         }
 
         that.setData({
           tasks: that.data.timeList
 
         })
+
+  
+
       },
     })
 
-    for (var index in this.data.tasks) {
-      console.log(this.data.tasks[index].dydj);
-    }
 
   }
 

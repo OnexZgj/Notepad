@@ -5,13 +5,9 @@
     <block wx:for="{{tasks}}" wx:for-item="item" >
       <view class='liststyle'>
 
-        <view class='title' id='{{item.dydj}}' >{{item.dydj}}</view>
+        <view class='title' id='{{item.des}}' >关键字:{{item.des}}</view>
 
-        <view class='title' id='{{item.location}}' >位置:{{item.location}}</view>
-
-        <view class='title' id='{{item.gh}}' >描述:{{item.gh}}</view>
-
-        <view class='title' id='{{item.xlmc}}' >原始记录:{{item.xlmc}}</view>
+        <view class='title' id='{{item.record}}' >原始记录:{{item.record}}</view>
         <view class='title' id='{{item.time}}' >保存时间:{{item.time}}</view>
 
         <view class="weui-uploader__bd">
@@ -23,7 +19,7 @@
         </view>
         <view class='title'>
           <image id='{{index}}' class='listtopimage' src='../../assets/images/delete.png' bindtap='delete' ></image>
-          <image class='listtopimage' src='../../assets/images/update.png'  id='{{index}}'bindtap='update'></image>
+          <image class='listtopimage' src='../../assets/images/update.png'  id='{{index}}'bindtap='update'  ></image>
 
         </view>
       </view>

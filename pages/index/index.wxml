@@ -8,17 +8,8 @@
     </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">Hello World {{name}}</text>
 
-
-<button type="primary" 
-        bindtap="gotoTask"> go to Task! </button>
-
-        <button type="primary" 
-        bindtap="gotoLocation"> get location! </button>
-
-
-                <button type="primary" 
+  <button type="primary" 
         bindtap="firstPage"> First page </button>
 
   </view>
