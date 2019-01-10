@@ -48,28 +48,19 @@ Page({
 
   delete: function (event) {
     var position = event.currentTarget.id
-    console.log("delete: " +position)
-    var tempTask=this.data.tasks.splice(position,1)
-    console.log("delete: " + tempTask.length)
+    // console.log("delete: " +position)
+    var tempTask=this.data.tasks.splice(position,1);
 
     this.setData({
-      tasks: tempTask
-
+      tasks: this.data.tasks
     })
-
-    wx.setStorageSync("01", tempTask );
-
-
-    // this.setData({
-    //   tasks: tempTask
-    // })
     var link = "删除成功"
-
+    wx.setStorageSync("01", this.data.tasks);
     wx.setClipboardData({
       data: link,
       success: function(res) {
         wx.showToast({
-          title: '删除待开发',
+          title: '删除成功',
           icon: 'success'
         })
       }
